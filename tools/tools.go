@@ -53,9 +53,28 @@ func GetRandomArray(maxNum int, maxSize int) []int {
 	//tools.GetRandom(int64(maxSize-1)) 的范围是 [0 99]
 	//tools.GetRandom(int64(maxSize-1)) + 1 的范围是 [1 100] 也就是说数组长度至少是1，最大是maxSize
 	size := GetRandom(maxSize-1) + 1
-	arr := make([]int, 0, size)
+	arr := make([]int, size)
 	for i := 0; i < size; i++ {
-		arr = append(arr, GetRandom(maxNum)-GetRandom(maxNum))
+		arr[i] = GetRandom(maxNum) - GetRandom(maxNum)
 	}
 	return arr
+}
+
+/**
+ * 随机样本产生器，能随机生成一个有序数组，和一个可能在此范围内的数
+ */
+func GenerateRandomSortedArrayAndNum(maxSize int, step int) ([]int, int) {
+	size := GetRandom(maxSize)
+	arr := make([]int, size)
+	tmp := 0
+	for i := 0; i < size; i++ {
+		arr[i] = tmp + GetRandom(step)
+		tmp = arr[i]
+	}
+	//最后生成一个随机数
+	if tmp == 0 {
+		tmp = 1
+	}
+	num := GetRandom(tmp << 1)
+	return arr, num
 }

@@ -34,8 +34,8 @@ func main() {
 	//InsertionSort(arr)
 	//fmt.Println(arr)
 
-	testTimes := 100000
-	maxNum, maxSize := 1000, 1000
+	testTimes := 500000
+	maxNum, maxSize := 100, 100
 	fmt.Println("开始测试")
 	for i := 0; i < testTimes; i++ {
 		arr1 := tools.GetRandomArray(maxNum, maxSize)
